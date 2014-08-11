@@ -1,0 +1,14 @@
+include LICENSE
+include README.rst
+include setup.py
+include tox.ini
+include requirements.txt
+recursive-include pods *
+recursive-exclude pods *.pyc
+recursive-exclude pods *.pyo
+recursive-include docs *
+recursive-exclude docs *.pyc
+recursive-exclude docs *.pyo
+recursive-include tests *
+recursive-exclude tests *.pyc
+recursive-exclude tests *.pyo
