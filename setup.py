@@ -45,7 +45,7 @@ setup(
     install_requires=[str(ir.req) for ir in parse_requirements('requirements.txt')],
     tests_require=['tox'],
     cmdclass={'test': Tox},
-    license='Copyright 2014 OohlaLabs Limited',
+    license='MIT',
     description='App Settings for Django 1.7',
     long_description=read('README.rst'),
     classifiers=[
