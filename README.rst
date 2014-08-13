@@ -2,8 +2,11 @@
 Django Pods
 ===========
 
-.. image:: https://api.travis-ci.org/OohlaLabs/django-pods.png
+.. image:: https://travis-ci.org/OohlaLabs/django-pods.svg?branch=master
     :target: https://travis-ci.org/OohlaLabs/django-pods
+
+.. image:: https://coveralls.io/repos/OohlaLabs/django-pods/badge.png
+    :target: https://coveralls.io/r/OohlaLabs/django-pods
 
 Django Pods is a minimalist package that lets you configure app specific settings that can be overridden in project settings.
 
