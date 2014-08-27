@@ -2,6 +2,9 @@
 Django Pods
 ===========
 
+.. image:: https://badge.fury.io/py/django-pods.svg
+    :target: http://badge.fury.io/py/django-pods
+
 .. image:: https://travis-ci.org/OohlaLabs/django-pods.svg?branch=master
     :target: https://travis-ci.org/OohlaLabs/django-pods
 
