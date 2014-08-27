@@ -2,8 +2,8 @@
 Django Pods
 ===========
 
-.. image:: https://badge.fury.io/py/django-pods.svg
-    :target: http://badge.fury.io/py/django-pods
+.. image:: https://pypip.in/version/django-pods/badge.svg
+    :target: https://pypi.python.org/pypi/django-pods/
 
 .. image:: https://pypip.in/format/django-pods/badge.svg
     :target: https://pypi.python.org/pypi/django-pods/
