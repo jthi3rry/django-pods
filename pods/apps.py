@@ -1,8 +1,11 @@
 import re
 import importlib
 from django.utils import six
-from django.utils.module_loading import import_string
 from django.conf import settings, BaseSettings
+try:
+    from django.utils.module_loading import import_string
+except ImportError:
+    from django.utils.module_loading import import_by_path as import_string
 
 
 def underscore_capitalized(str):

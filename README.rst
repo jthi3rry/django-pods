@@ -132,6 +132,10 @@ All contributions and comments are welcome.
 Change Log
 ----------
 
+v0.2
+~~~~
+* Fix compatibility with Django 1.6
+
 v0.1
 ~~~~
 * Initial
