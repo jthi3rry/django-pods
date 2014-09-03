@@ -1,10 +1,7 @@
-from django.apps.config import AppConfig
 from pods.apps import AppSettings
 
 
-class MockAppConfig(AppSettings, AppConfig):
-    name = 'tests.mocks'
-
+class MockAppConfig(AppSettings):
     settings_key = 'MOCK'
     settings_module = 'tests.mocks.app_test_settings'
     settings_imports = (

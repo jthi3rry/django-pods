@@ -1,5 +1,6 @@
 import re
 import importlib
+from django.core.exceptions import ImproperlyConfigured
 from django.utils import six
 from django.conf import settings, BaseSettings
 try:
@@ -34,7 +35,7 @@ class AppSettingsHolder(BaseSettings):
                 return import_string(value)
             elif isinstance(value, (list, tuple)):
                 return [import_string(item) for item in value]
-        except ImportError as e:
+        except (ImportError, ImproperlyConfigured) as e:
             raise ImportError("Could not import '{}' for {} app setting '{}'. {}: {}".format(value, self._user_settings_key, setting_name, e.__class__.__name__, e))
 
     def __getattr__(self, attr):

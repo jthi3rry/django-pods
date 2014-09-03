@@ -132,6 +132,11 @@ All contributions and comments are welcome.
 Change Log
 ----------
 
+v0.3
+~~~~
+* Unit tests now use Django 1.7 final and support Django 1.6 and 1.5
+* Fix PyPI classifiers for supported python versions
+
 v0.2
 ~~~~
 * Fix compatibility with Django 1.6

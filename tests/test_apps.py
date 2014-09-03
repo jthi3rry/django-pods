@@ -1,9 +1,6 @@
 import unittest
 
-import django
-from django.apps import apps
 from django.conf import settings
-
 from pods.apps import AppSettings, AppSettingsHolder, underscore_capitalized
 
 settings.configure(
@@ -15,13 +12,12 @@ settings.configure(
     }
 )
 
-django.setup()
-
 
 class TestAppSettings(unittest.TestCase):
 
     def setUp(self):
-        self.app = apps.get_app_config('mocks')
+        from tests.mocks.apps import MockAppConfig
+        self.app = MockAppConfig()
 
     def test_has_settings(self):
         self.assertTrue(hasattr(self.app, 'settings'))

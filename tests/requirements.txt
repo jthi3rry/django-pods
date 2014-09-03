@@ -2,5 +2,3 @@ tox
 coverage
 nose
 nose-exclude
-# until 1.7 Final
-https://www.djangoproject.com/download/1.7c1/tarball/
