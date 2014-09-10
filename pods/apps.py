@@ -60,9 +60,9 @@ class AppSettingsHolder(BaseSettings):
 class AppSettingsMeta(type):
 
     def __init__(cls, name, bases, dict):
-        cls.settings_module = cls.settings_module if hasattr(cls, 'settings_module') else None
-        cls.settings_key = cls.settings_key.upper() if hasattr(cls, 'settings_key') else underscore_capitalized(name)
-        cls.settings_imports = cls.settings_imports if hasattr(cls, 'settings_imports') else None
+        cls.settings_module = dict.get('settings_module', None)
+        cls.settings_key = dict.get('settings_key', underscore_capitalized(name)).upper()
+        cls.settings_imports = dict.get('settings_imports', None)
 
         if cls.settings_module:
             cls.settings = AppSettingsHolder(cls.settings_module, cls.settings_key, cls.settings_imports)

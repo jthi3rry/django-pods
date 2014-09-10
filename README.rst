@@ -132,6 +132,10 @@ All contributions and comments are welcome.
 Change Log
 ----------
 
+v0.4
+~~~~
+* Fix bug with default settings_key not set correctly if none given
+
 v0.3
 ~~~~
 * Unit tests now use Django 1.7 final and support Django 1.6 and 1.5
