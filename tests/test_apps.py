@@ -62,13 +62,9 @@ class TestAppSettings(unittest.TestCase):
         self.assertTrue(hasattr(self.app, 'APP_VARIABLE'))
         self.assertFalse(hasattr(self.app, 'DOES_NOT_EXIST'))
 
-    def test_without_django_apps_framework(self):
-
-        class SettingsEnabledClass(AppSettings):
-            settings_key = 'MOCK'
+    def test_default_settings_key(self):
+        class SettingsKeyClass(AppSettings):
             settings_module = 'tests.mocks.app_test_settings'
 
-        app = SettingsEnabledClass()
-        self.assertTrue(hasattr(app, 'settings'))
-        self.assertTrue(hasattr(app.__class__, 'settings'))
-        self.assertIsInstance(app.settings, AppSettingsHolder)
+        app = SettingsKeyClass()
+        self.assertEqual(app.settings_key, 'SETTINGS_KEY_CLASS')
