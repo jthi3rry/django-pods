@@ -31,7 +31,7 @@ This package is largely inspired by `Django Rest Framework <http://www.django-re
 Preview
 -------
 
-Django Pods allows developers to customise app settings in two ways::
+Django Pods allows developers to customise app settings in two ways:
 
 
 1. Dictionary style (as per `Django Rest Framework <http://www.django-rest-framework.org/>`_)::
