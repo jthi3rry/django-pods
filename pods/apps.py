@@ -9,8 +9,8 @@ except ImportError:
     from django.utils.module_loading import import_by_path as import_string
 
 
-def underscore_capitalized(str):
-    return re.sub('(((?<=[a-z])[A-Z1-9])|([A-Z1-9](?![A-Z1-9]|$)))', '_\\1', str).strip('_').upper()
+def underscore_capitalized(s):
+    return re.sub('(((?<=[a-z])[A-Z1-9])|([A-Z1-9](?![A-Z1-9]|$)))', '_\\1', s).strip('_').upper()
 
 
 class AppSettingsHolder(BaseSettings):
@@ -22,12 +22,12 @@ class AppSettingsHolder(BaseSettings):
         try:
             mod = importlib.import_module(self.SETTINGS_MODULE)
         except ImportError as e:
-            raise ImportError("Could not import app settings '{}' (Is it on sys.path? Is there an import error in the settings file?): {}".format(self.SETTINGS_MODULE, e))
-
+            raise ImportError("Could not import app settings '{}' "
+                              "(Is it on sys.path? Is there an import error in the settings file?): {}".format(self.SETTINGS_MODULE, e))
         self._user_settings_key = user_settings_key
         self._import_strings = import_strings or []
         self._app_settings = {setting: getattr(mod, setting) for setting in dir(mod) if setting.isupper()}
-        self._user_settings = getattr(settings, user_settings_key, None)
+        self._user_settings = getattr(settings, user_settings_key, {})
 
     def _perform_import(self, value, setting_name):
         try:
@@ -36,17 +36,23 @@ class AppSettingsHolder(BaseSettings):
             elif isinstance(value, (list, tuple)):
                 return [import_string(item) for item in value]
         except (ImportError, ImproperlyConfigured) as e:
-            raise ImportError("Could not import '{}' for {} app setting '{}'. {}: {}".format(value, self._user_settings_key, setting_name, e.__class__.__name__, e))
+            raise ImportError("Could not import module '{}' "
+                              "(Have you checked the setting '{}' for app '{}'?): {}".format(value, self._user_settings_key, setting_name, e))
+
+    def _get_user_setting(self, name):
+        try:
+            return self._user_settings[name]
+        except (KeyError, TypeError):
+            try:
+                return getattr(settings, '_'.join([self._user_settings_key, name]))
+            except AttributeError:
+                return self._app_settings[name]
 
     def __getattr__(self, attr):
         if attr not in self._app_settings.keys():
             raise AttributeError("Invalid {} setting: '{}'".format(self._user_settings_key, attr))
 
-        # Check if present in user settings and return app default otherwise
-        try:
-            value = self._user_settings[attr]
-        except:
-            value = self._app_settings[attr]
+        value = self._get_user_setting(attr)
 
         # Coerce import strings into classes
         if value and attr in self._import_strings:
@@ -59,10 +65,10 @@ class AppSettingsHolder(BaseSettings):
 
 class AppSettingsMeta(type):
 
-    def __init__(cls, name, bases, dict):
-        cls.settings_module = dict.get('settings_module', None)
-        cls.settings_key = dict.get('settings_key', underscore_capitalized(name)).upper()
-        cls.settings_imports = dict.get('settings_imports', None)
+    def __init__(cls, name, bases, data):
+        cls.settings_module = data.get('settings_module', None)
+        cls.settings_key = data.get('settings_key', underscore_capitalized(name)).upper()
+        cls.settings_imports = data.get('settings_imports', None)
 
         if cls.settings_module:
             cls.settings = AppSettingsHolder(cls.settings_module, cls.settings_key, cls.settings_imports)
@@ -70,6 +76,9 @@ class AppSettingsMeta(type):
             cls.settings = None
 
         super(AppSettingsMeta, cls).__init__(name, bases, dict)
+
+    def __getattr__(cls, attr):
+        return getattr(cls.settings, attr)
 
 
 class AppSettings(six.with_metaclass(AppSettingsMeta)):

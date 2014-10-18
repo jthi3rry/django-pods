@@ -1,6 +1,8 @@
-APP_VARIABLE = 10
+DEFAULT = 10
 
-OTHER_APP_VARIABLE = False
+DICT_STYLE_OVERRIDE = False
+
+PREFIX_STYLE_OVERRIDE = False
 
 APP_MODULE = "tests.mocks.app_test_imports.TestClass"
 

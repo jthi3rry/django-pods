@@ -49,7 +49,7 @@ setup(
     description='App Settings for Django 1.7',
     long_description=read('README.rst'),
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
