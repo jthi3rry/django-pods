@@ -14,6 +14,9 @@ Django Pods
 .. image:: https://coveralls.io/repos/OohlaLabs/django-pods/badge.png?branch=master
     :target: https://coveralls.io/r/OohlaLabs/django-pods
 
+.. image:: https://landscape.io/github/OohlaLabs/django-pods/master/landscape.png
+    :target: https://landscape.io/github/OohlaLabs/django-pods/master
+
 .. image:: https://pypip.in/py_versions/django-pods/badge.svg
     :target: https://pypi.python.org/pypi/django-pods/
 
@@ -28,7 +31,7 @@ This package is largely inspired by `Django Rest Framework <http://www.django-re
 Preview
 -------
 
-Django Pods allows developers to customize app settings in two ways::
+Django Pods allows developers to customise app settings in two ways::
 
 
 1. Dictionary style (as per `Django Rest Framework <http://www.django-rest-framework.org/>`_)::
@@ -137,7 +140,7 @@ Settings can also be accessed directly via the class::
 
 .. note:: **Usage with Django < 1.7**
 
-    Prior to Django 1.7, there wasn't a logical place to create a class representing an app. However, any class can extend ``AppSettings``. For example, in ``models.py`::
+    Prior to Django 1.7, there wasn't a logical place to create a class representing an app. However, any class can extend ``AppSettings``. For example, in ``models.py``::
 
         from pods.apps import AppSettings
 
