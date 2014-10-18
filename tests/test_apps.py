@@ -8,8 +8,9 @@ settings.configure(
         'tests.mocks'
     ],
     MOCK={
-        "OTHER_APP_VARIABLE": "my_other_value"
-    }
+        "DICT_STYLE_OVERRIDE": True
+    },
+    MOCK_PREFIX_STYLE_OVERRIDE=True
 )
 
 
@@ -24,14 +25,14 @@ class TestAppSettings(unittest.TestCase):
         self.assertTrue(hasattr(self.app.__class__, 'settings'))
         self.assertIsInstance(self.app.settings, AppSettingsHolder)
 
-    def test_variables(self):
+    def test_settings_defaults(self):
         from tests.mocks import app_test_settings
-        self.assertEqual(self.app.settings.APP_VARIABLE, app_test_settings.APP_VARIABLE)
+        self.assertEqual(self.app.settings.DEFAULT, app_test_settings.DEFAULT)
 
     def test_settings_override(self):
         from tests.mocks import app_test_settings
-        self.assertNotEqual(self.app.settings.OTHER_APP_VARIABLE, app_test_settings.OTHER_APP_VARIABLE)
-        self.assertEqual(self.app.settings.OTHER_APP_VARIABLE, "my_other_value")
+        self.assertNotEqual(self.app.settings.DICT_STYLE_OVERRIDE, app_test_settings.DICT_STYLE_OVERRIDE)
+        self.assertNotEqual(self.app.settings.PREFIX_STYLE_OVERRIDE, app_test_settings.PREFIX_STYLE_OVERRIDE)
 
     def test_imports(self):
         from tests.mocks import app_test_imports
@@ -43,11 +44,11 @@ class TestAppSettings(unittest.TestCase):
 
     def test_attribute_error(self):
         with self.assertRaises(AttributeError):
-            self.app.settings.DOES_NOT_EXIST
+            module = self.app.settings.DOES_NOT_EXIST
 
     def test_import_error(self):
         with self.assertRaises(ImportError):
-            self.app.settings.NON_EXISTENT_APP_MODULE
+            module = self.app.settings.NON_EXISTENT_APP_MODULE
 
     def test_settings_import_error(self):
         with self.assertRaises(ImportError):
@@ -59,7 +60,10 @@ class TestAppSettings(unittest.TestCase):
         self.assertEqual(underscore_capitalized("RockNRollConfig"), "ROCK_N_ROLL_CONFIG")
 
     def test_settings_proxy(self):
-        self.assertTrue(hasattr(self.app, 'APP_VARIABLE'))
+        from tests.mocks.apps import MockAppConfig
+        self.assertTrue(hasattr(MockAppConfig, 'DEFAULT'))
+        self.assertFalse(hasattr(MockAppConfig, 'DOES_NOT_EXIST'))
+        self.assertTrue(hasattr(self.app, 'DEFAULT'))
         self.assertFalse(hasattr(self.app, 'DOES_NOT_EXIST'))
 
     def test_default_settings_key(self):
