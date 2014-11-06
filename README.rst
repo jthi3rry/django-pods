@@ -205,6 +205,10 @@ All contributions and comments are welcome.
 Change Log
 ----------
 
+v1.1
+~~~~
+Exclude tests and docs from the build
+
 v1.0
 ~~~~
 * Add support for prefix style overrides
