@@ -207,7 +207,7 @@ Change Log
 
 v1.1
 ~~~~
-Exclude tests and docs from the build
+* Exclude tests and docs from the build
 
 v1.0
 ~~~~
