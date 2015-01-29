@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import uuid
 import codecs
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
@@ -42,7 +43,7 @@ setup(
     author_email='packages@oohlalabs.co.nz',
     url='https://github.com/OohlaLabs/django-pods',
     packages=find_packages(),
-    install_requires=[str(ir.req) for ir in parse_requirements('requirements.txt')],
+    install_requires=[str(ir.req) for ir in parse_requirements('requirements.txt', session=uuid.uuid1())],
     tests_require=['tox'],
     cmdclass={'test': Tox},
     license='MIT',

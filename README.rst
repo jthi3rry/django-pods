@@ -205,6 +205,11 @@ All contributions and comments are welcome.
 Change Log
 ----------
 
+v1.1.1
+~~~~~~
+* Switch to Semantic Versioning
+* Fix issue with parse_requirements for newer versions of pip (>=6.0.0)
+
 v1.1
 ~~~~
 * Exclude tests and docs from the build
