@@ -209,6 +209,7 @@ v1.1.1
 ~~~~~~
 * Switch to Semantic Versioning
 * Fix issue with parse_requirements for newer versions of pip (>=6.0.0)
+* Fix typo in AppSettingsMeta
 
 v1.1
 ~~~~

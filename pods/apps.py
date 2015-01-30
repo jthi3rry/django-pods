@@ -5,7 +5,7 @@ from django.utils import six
 from django.conf import settings, BaseSettings
 try:
     from django.utils.module_loading import import_string
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.utils.module_loading import import_by_path as import_string
 
 
@@ -66,16 +66,16 @@ class AppSettingsHolder(BaseSettings):
 class AppSettingsMeta(type):
 
     def __init__(cls, name, bases, data):
-        cls.settings_module = data.get('settings_module', None)
-        cls.settings_key = data.get('settings_key', underscore_capitalized(name)).upper()
-        cls.settings_imports = data.get('settings_imports', None)
+        cls.settings_module = data.pop('settings_module', None)
+        cls.settings_key = data.pop('settings_key', underscore_capitalized(name)).upper()
+        cls.settings_imports = data.pop('settings_imports', None)
 
         if cls.settings_module:
             cls.settings = AppSettingsHolder(cls.settings_module, cls.settings_key, cls.settings_imports)
         else:
             cls.settings = None
 
-        super(AppSettingsMeta, cls).__init__(name, bases, dict)
+        super(AppSettingsMeta, cls).__init__(name, bases, data)
 
     def __getattr__(cls, attr):
         return getattr(cls.settings, attr)
