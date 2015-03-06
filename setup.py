@@ -36,19 +36,28 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
+pypi_readme_note = """\
+.. note::
+
+   For the latest source, discussions, etc., please visit the
+   `GitHub repository <https://github.com/OohlaLabs/django-pods>`_
+"""
+
 setup(
     name='django-pods',
     version=find_version('pods', '__init__.py'),
     author='OohlaLabs Limited',
     author_email='packages@oohlalabs.co.nz',
+    maintainer="Thierry Jossermoz",
+    maintainer_email="thierry.jossermoz@oohlalabs.com",
     url='https://github.com/OohlaLabs/django-pods',
     packages=find_packages(),
     install_requires=[str(ir.req) for ir in parse_requirements('requirements.txt', session=uuid.uuid1())],
     tests_require=['tox'],
     cmdclass={'test': Tox},
     license='MIT',
-    description='App Settings for Django 1.7',
-    long_description=read('README.rst'),
+    description='App Settings for Django',
+    long_description="\n\n".join([pypi_readme_note, read('README.rst')]),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",

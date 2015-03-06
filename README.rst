@@ -25,7 +25,7 @@ Django Pods
 
 Django Pods is a minimalist package that lets you configure default settings for your `reusable apps <https://docs.djangoproject.com/en/dev/intro/reusable-apps/>`_, and allows developers using your apps to override these defaults in their own project settings.
 
-This package is largely inspired by `Django Rest Framework <http://www.django-rest-framework.org/>`_ and `Django AllAuth <http://www.intenct.nl/projects/django-allauth/>`_ and adapted to work with `Django 1.7 Applications <https://docs.djangoproject.com/en/dev/ref/applications/>`_, but also with any classes extending ``pods.apps.AppSettings``.
+This package is largely inspired by `Django Rest Framework <http://www.django-rest-framework.org/>`_ and `Django AllAuth <http://www.intenct.nl/projects/django-allauth/>`_ and adapted to work with `Django Applications <https://docs.djangoproject.com/en/dev/ref/applications/>`_, but also with any classes extending ``pods.apps.AppSettings``.
 
 
 Preview
@@ -204,6 +204,10 @@ All contributions and comments are welcome.
 
 Change Log
 ----------
+
+v1.1.2
+~~~~~~
+* Django 1.8 support
 
 v1.1.1
 ~~~~~~
