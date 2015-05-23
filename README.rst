@@ -8,14 +8,14 @@ Django Pods
 .. image:: https://pypip.in/format/django-pods/badge.svg
     :target: https://pypi.python.org/pypi/django-pods/
 
-.. image:: https://travis-ci.org/OohlaLabs/django-pods.svg?branch=master
-    :target: https://travis-ci.org/OohlaLabs/django-pods
+.. image:: https://travis-ci.org/jthi3rry/django-pods.svg?branch=master
+    :target: https://travis-ci.org/jthi3rry/django-pods
 
-.. image:: https://coveralls.io/repos/OohlaLabs/django-pods/badge.png?branch=master
-    :target: https://coveralls.io/r/OohlaLabs/django-pods
+.. image:: https://coveralls.io/repos/jthi3rry/django-pods/badge.png?branch=master
+    :target: https://coveralls.io/r/jthi3rry/django-pods
 
-.. image:: https://landscape.io/github/OohlaLabs/django-pods/master/landscape.png
-    :target: https://landscape.io/github/OohlaLabs/django-pods/master
+.. image:: https://landscape.io/github/jthi3rry/django-pods/master/landscape.png
+    :target: https://landscape.io/github/jthi3rry/django-pods/master
 
 .. image:: https://pypip.in/py_versions/django-pods/badge.svg
     :target: https://pypi.python.org/pypi/django-pods/
