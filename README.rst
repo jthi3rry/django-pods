@@ -2,11 +2,6 @@
 Django Pods
 ===========
 
-.. image:: https://pypip.in/version/django-pods/badge.svg
-    :target: https://pypi.python.org/pypi/django-pods/
-
-.. image:: https://pypip.in/format/django-pods/badge.svg
-    :target: https://pypi.python.org/pypi/django-pods/
 
 .. image:: https://travis-ci.org/jthi3rry/django-pods.svg?branch=master
     :target: https://travis-ci.org/jthi3rry/django-pods
@@ -17,11 +12,6 @@ Django Pods
 .. image:: https://landscape.io/github/jthi3rry/django-pods/master/landscape.png
     :target: https://landscape.io/github/jthi3rry/django-pods/master
 
-.. image:: https://pypip.in/py_versions/django-pods/badge.svg
-    :target: https://pypi.python.org/pypi/django-pods/
-
-.. image:: https://pypip.in/license/django-pods/badge.svg
-    :target: https://pypi.python.org/pypi/django-pods/
 
 Django Pods is a minimalist package that lets you configure default settings for your `reusable apps <https://docs.djangoproject.com/en/dev/intro/reusable-apps/>`_, and allows developers using your apps to override these defaults in their own project settings.
 
@@ -58,7 +48,7 @@ Installation
 Usage in Reusable Apps
 ----------------------
 
-1. Add ``django-pods`` to the ``install_requires`` of your ``setup.py``::
+1. If you are publishing a packaged application, add ``django-pods`` to the ``install_requires`` of your ``setup.py``::
 
 
     setup(
@@ -109,7 +99,7 @@ Usage in Reusable Apps
     # What is your favourite band?
 
     app.ANSWER
-    # The Beatles
+    # The Rolling Stomes
 
     app.CLASS_TO_IMPORT
     # <class 'path.to.ClassToImport'>
@@ -201,42 +191,3 @@ Contributions
 -------------
 
 All contributions and comments are welcome.
-
-Change Log
-----------
-
-v1.1.2
-~~~~~~
-* Django 1.8 support
-
-v1.1.1
-~~~~~~
-* Switch to Semantic Versioning
-* Fix issue with parse_requirements for newer versions of pip (>=6.0.0)
-* Fix typo in AppSettingsMeta
-
-v1.1
-~~~~
-* Exclude tests and docs from the build
-
-v1.0
-~~~~
-* Add support for prefix style overrides
-* Documentation changes
-
-v0.4
-~~~~
-* Fix bug with default settings_key not set correctly if none given
-
-v0.3
-~~~~
-* Unit tests now use Django 1.7 final and support Django 1.6 and 1.5
-* Fix PyPI classifiers for supported python versions
-
-v0.2
-~~~~
-* Fix compatibility with Django 1.6
-
-v0.1
-~~~~
-* Initial
