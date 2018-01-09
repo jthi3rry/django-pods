@@ -2,7 +2,7 @@ import re
 import importlib
 from django.core.exceptions import ImproperlyConfigured
 from django.utils import six
-from django.conf import settings, BaseSettings
+from django.conf import settings
 try:
     from django.utils.module_loading import import_string
 except ImportError:  # pragma: no cover
@@ -11,6 +11,17 @@ except ImportError:  # pragma: no cover
 
 def underscore_capitalized(s):
     return re.sub('(((?<=[a-z])[A-Z1-9])|([A-Z1-9](?![A-Z1-9]|$)))', '_\\1', s).strip('_').upper()
+
+
+# copied from django<1.11
+class BaseSettings(object):
+    """
+    Common logic for settings whether set by a module or by the user.
+    """
+    def __setattr__(self, name, value):
+        if name in ("MEDIA_URL", "STATIC_URL") and value and not value.endswith('/'):
+            raise ImproperlyConfigured("If set, %s must end with a slash" % name)
+        object.__setattr__(self, name, value)
 
 
 class AppSettingsHolder(BaseSettings):
