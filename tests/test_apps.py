@@ -1,6 +1,8 @@
 import unittest
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+
 from pods.apps import AppSettings, AppSettingsHolder, underscore_capitalized
 
 settings.configure(
@@ -72,3 +74,13 @@ class TestAppSettings(unittest.TestCase):
 
         app = SettingsKeyClass()
         self.assertEqual(app.settings_key, 'SETTINGS_KEY_CLASS')
+
+    def test_setattr_legacy(self):
+        # Not sure if we actually want this functionality, but for coverage of legacy Django behaviour
+        with self.assertRaises(ImproperlyConfigured):
+            self.app.settings.MEDIA_URL = '/no_trailing_slash'
+
+        with self.assertRaises(ImproperlyConfigured):
+            self.app.settings.STATIC_URL = '/no_trailing_slash'
+
+        self.app.settings.MEDIA_URL = '/with_trailing_slash/'

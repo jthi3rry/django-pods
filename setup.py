@@ -1,11 +1,9 @@
 import sys
 import os
 import re
-import uuid
 import codecs
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
-from pip.req import parse_requirements
 
 
 class Tox(TestCommand):
@@ -52,8 +50,8 @@ setup(
     maintainer_email="thierry.jossermoz@oohlalabs.com",
     url='https://github.com/OohlaLabs/django-pods',
     packages=find_packages(),
-    install_requires=[str(ir.req) for ir in parse_requirements('requirements.txt', session=uuid.uuid1())],
-    tests_require=['tox'],
+    install_requires=['Django', ],
+    tests_require=['tox', 'nose', ],
     cmdclass={'test': Tox},
     license='MIT',
     description='App Settings for Django',
@@ -65,8 +63,8 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         'Topic :: Software Development :: Libraries :: Python Modules',
         "Framework :: Django",
     ]

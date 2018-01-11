@@ -1,21 +1,14 @@
 language: python
-
-env:
-  - TOXENV=py27-1.5
-  - TOXENV=py27-1.6
-  - TOXENV=py27-1.7
-  - TOXENV=py27-1.8
-  - TOXENV=py33-1.5
-  - TOXENV=py33-1.6
-  - TOXENV=py33-1.7
-  - TOXENV=py33-1.8
-  - TOXENV=py34-1.5
-  - TOXENV=py34-1.6
-  - TOXENV=py34-1.7
-  - TOXENV=py34-1.8
+cache: pip
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  - pypy
+  - pypy3
 
 install:
-  - pip install tox coveralls
+  - pip install tox-travis coveralls
 
 script:
   - tox
