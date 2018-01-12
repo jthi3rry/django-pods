@@ -13,4 +13,21 @@ install:
 script:
   - tox
 
-after_success: coveralls
+after_success:
+  - coveralls
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.7* ]]; then export RELEASE_SENTINEL=1; fi
+
+before_deploy:
+  - echo $TRAVIS_TAG > VERSION
+
+deploy:
+  provider: pypi
+  user: OohlaLabs
+  password:
+    secure: En0CuVSIr9Z7EfyqB0qjcbuTZTqJ6gVT8UNPbQU1EgVsH0XTlHqLxXx1VukI4e1zIXDp16rv9cYUmSvU1SOMA5gTlZoQexHG+ZW0ZSYo5UkSJo62oh5cXlFqbwEz8LRnyZGQsIPPDZaSURrVo9zD20h8/QkSVh4iWJrSyvy1W2I=
+  distributions: bdist_wheel
+  on:
+    tags: true
+    repo: jthi3rry/django-pods
+    branch: master
+    condition: $RELEASE_SENTINEL = 1
