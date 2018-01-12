@@ -26,36 +26,34 @@ def read(*parts):
         return fp.read()
 
 
-def find_version(*file_paths):
-    version_file = read(*file_paths)
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
+VERSION = read("VERSION").strip()
 
+REPO_URL = "https://github.com/jthi3rry/django-pods"
 
-pypi_readme_note = """\
+PYPI_README_NOTE = """\
 .. note::
 
-   For the latest source, discussions, etc., please visit the
-   `GitHub repository <https://github.com/OohlaLabs/django-pods>`_
-"""
+   For the latest source, discussions, bug reports, etc., please visit the `GitHub repository <{}>`_
+""".format(REPO_URL)
+
+LONG_DESCRIPTION = "\n\n".join([PYPI_README_NOTE, read("README.rst")])
+
 
 setup(
     name='django-pods',
-    version=find_version('pods', '__init__.py'),
+    version=VERSION,
     author='OohlaLabs Limited',
     author_email='packages@oohlalabs.co.nz',
     maintainer="Thierry Jossermoz",
     maintainer_email="thierry.jossermoz@oohlalabs.com",
-    url='https://github.com/OohlaLabs/django-pods',
-    packages=find_packages(),
+    url=REPO_URL,
+    packages=find_packages(exclude=("tests*",)),
     install_requires=['Django', ],
     tests_require=['tox', 'nose', ],
     cmdclass={'test': Tox},
     license='MIT',
     description='App Settings for Django',
-    long_description="\n\n".join([pypi_readme_note, read('README.rst')]),
+    long_description=LONG_DESCRIPTION,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
